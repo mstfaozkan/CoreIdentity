@@ -1,0 +1,26 @@
+﻿@using CoreIdentity.Models
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<form asp-action="Login" method="post" asp-antiforgery="true">
+    
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input  asp-for="Password" class="form-control"/>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Login" />
+</form>
+

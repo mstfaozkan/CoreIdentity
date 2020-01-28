@@ -1,0 +1,89 @@
+﻿@model RoleDetails
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+
+<div class="bg-primary text-white p-1 m-1 ">
+    <h2>Edit Role</h2>
+</div>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" name="RoleId" value="@Model.Role.Id" />
+    <input type="hidden" name="RoleName" value="@Model.Role.Name" />
+
+    <h6 class="bg-info text-white p-1">
+        Add to @Model.Role.Name
+    </h6>
+
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model.NonMembers.Count() == 0)
+            {
+                <tr>
+                    <td colspan="2">All Users Are Member </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var user in Model.NonMembers)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>
+                            <input type="checkbox" name="IdsToAdd" value="@user.Id" />
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+
+    <h6 class="bg-info text-white p-1">
+        Delete to @Model.Role.Name
+    </h6>
+
+    <table class="table table-bordered mb-3">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.NonMembers.Count() == 0)
+            {
+                <tr>
+                    <td colspan="2">All User Are NonMember</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var user in Model.Members)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>
+                            <input type="checkbox" name="IdsToDelete" value="@user.Id" />
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a asp-action="Index" class="btn btn-danger">İptal</a>
+</form>
+
