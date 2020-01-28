@@ -52,12 +52,12 @@ namespace CoreIdentity
             CookieBuilder cookieBuilder = new CookieBuilder();
             cookieBuilder.Name = "MySite";
             cookieBuilder.HttpOnly = false;
-            cookieBuilder.Expiration = System.TimeSpan.FromDays(60);
-
+            
             services.ConfigureApplicationCookie(options => {
                 options.LoginPath = "/Account/Login";
                 options.Cookie = cookieBuilder;
                 options.SlidingExpiration = true;
+                options.ExpireTimeSpan=System.TimeSpan.FromDays(60);
 
             });
 

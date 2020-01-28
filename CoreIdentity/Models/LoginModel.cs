@@ -15,5 +15,7 @@ namespace CoreIdentity.Models
         [Required(ErrorMessage ="Şifre zorunlu alan")]
         [UIHint("password")]
         public string Password { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }
